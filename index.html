@@ -145,8 +145,8 @@
         <p id="total-aktivitas"></p>
       </div>
       <div class="card">
-        <h3>Total Jarak</h3>
-        <p id="total-jarak"></p>
+        <h3>Total Peserta</h3>
+        <p id="total-peserta"></p>
       </div>
       <div class="card">
         <h3>Total Waktu</h3>
@@ -162,7 +162,6 @@
             <th>Rank</th>
             <th>Nama</th>
             <th>Jumlah Aktivitas</th>
-            <th>Jarak</th>
             <th>Waktu</th>
           </tr>
         </thead>
@@ -175,10 +174,9 @@
       <table id="report-olahraga">
         <thead>
           <tr>
-            <th>No</th>
+            <th>Tanggal</th>
             <th>Nama</th>
             <th>Aktivitas</th>
-            <th>Jarak</th>
             <th>Waktu</th>
             <th>Status</th>
           </tr>
@@ -191,18 +189,18 @@
   <script>
     const dataPerMinggu = {
       week1: {
-        aktivitas: 59, jarak: "527 km", waktu: "54h 8m 29s",
+        aktivitas: 59, peserta: "527 km", waktu: "54h 8m 29s",
         leaderboard: [
-          ["Bu Nana", "9", "120 km", "6h 20m"],
-          ["Hanin", "6", "110 km", "5h 45m"],
-          ["Ica", "5", "102 km", "4h 50m"],
-          ["Lia", "6", "110 km", "5h 45m"],
-          ["Aden", "5", "102 km", "4h 50m"],
-          ["Redy", "6", "110 km", "5h 45m"],
-          ["Mela", "5", "102 km", "4h 50m"],
-          ["Rendhie", "6", "110 km", "5h 45m"],
-          ["Sulis", "5", "102 km", "4h 50m"],
-          ["Siapa", "5", "102 km", "4h 50m"]
+          ["Bu Nana", "9", "6h 20m"],
+          ["Hanin", "6", "5h 45m"],
+          ["Ica", "5", "4h 50m"],
+          ["Lia", "6", "5h 45m"],
+          ["Aden", "5", "4h 50m"],
+          ["Redy", "6", "5h 45m"],
+          ["Mela", "5", "4h 50m"],
+          ["Rendhie", "6", "5h 45m"],
+          ["Sulis", "5", "4h 50m"],
+          ["Siapa", "5", "4h 50m"]
         ],
         report: [
           ["Ica", "Lari", "15 km", "2h", true],
@@ -210,7 +208,7 @@
         ]
       },
       week2: {
-        aktivitas: 2, jarak: "421 km", waktu: "28 jam",
+        aktivitas: 2, peserta: "421 km", waktu: "28 jam",
         leaderboard: [
           ["Rudi", "8", "100 km", "6h"],
           ["Dina", "7", "90 km", "5h"],
@@ -228,7 +226,7 @@
       if (!data) return;
 
       document.getElementById("total-aktivitas").textContent = data.aktivitas;
-      document.getElementById("total-jarak").textContent = data.jarak;
+      
       document.getElementById("total-waktu").textContent = data.waktu;
 
       const leaderboardBody = document.querySelector("#leaderboard tbody");
@@ -239,7 +237,7 @@
           <td>${item[0]}</td>
           <td>${item[1]}</td>
           <td>${item[2]}</td>
-          <td>${item[3]}</td>
+          
         </tr>`;
         leaderboardBody.insertAdjacentHTML("beforeend", row);
       });
@@ -251,11 +249,12 @@
           ? '<span class="icon-valid">✅</span>'
           : '<span class="icon-invalid">❌</span>';
         const row = `<tr>
-          <td>${index + 1}</td>
+          
           <td>${item[0]}</td>
           <td>${item[1]}</td>
           <td>${item[2]}</td>
           <td>${item[3]}</td>
+          
           <td>${icon}</td>
         </tr>`;
         reportBody.insertAdjacentHTML("beforeend", row);
