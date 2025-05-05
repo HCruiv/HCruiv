@@ -18,6 +18,7 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
+      flex-wrap: wrap;
     }
     h1 {
       margin: 0;
@@ -62,6 +63,9 @@
       font-weight: bold;
       color: #fc5200;
     }
+    .table-wrapper {
+      overflow-x: auto;
+    }
     table {
       width: 100%;
       border-collapse: collapse;
@@ -94,6 +98,16 @@
       color: red;
       font-weight: bold;
     }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .cards {
+        flex-direction: column;
+      }
+      .card {
+        min-width: 100%;
+      }
+    }
   </style>
 </head>
 <body>
@@ -101,7 +115,7 @@
   <header>
     <h1>Dashboard HC U Fit</h1>
     <div class="menu">
-      <a href="podium.html">🏆 Podium</a>
+      <a href="podium1.html">🏆 Podium</a>
     </div>
   </header>
 
@@ -128,33 +142,37 @@
     </div>
 
     <div class="section-title">🏆 Leaderboard Mingguan</div>
-    <table id="leaderboard">
-      <thead>
-        <tr>
-          <th>Rank</th>
-          <th>Nama</th>
-          <th>Jumlah Aktivitas</th>
-          <th>Jarak</th>
-          <th>Waktu</th>
-        </tr>
-      </thead>
-      <tbody></tbody>
-    </table>
+    <div class="table-wrapper">
+      <table id="leaderboard">
+        <thead>
+          <tr>
+            <th>Rank</th>
+            <th>Nama</th>
+            <th>Jumlah Aktivitas</th>
+            <th>Jarak</th>
+            <th>Waktu</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </div>
 
     <div class="section-title">📅 Report Activity</div>
-    <table id="report-olahraga">
-      <thead>
-        <tr>
-          <th>No</th>
-          <th>Nama</th>
-          <th>Aktivitas</th>
-          <th>Jarak</th>
-          <th>Waktu</th>
-          <th>Status</th>
-        </tr>
-      </thead>
-      <tbody></tbody>
-    </table>
+    <div class="table-wrapper">
+      <table id="report-olahraga">
+        <thead>
+          <tr>
+            <th>No</th>
+            <th>Nama</th>
+            <th>Aktivitas</th>
+            <th>Jarak</th>
+            <th>Waktu</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </div>
   </div>
 
   <script>
