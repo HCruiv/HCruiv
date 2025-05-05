@@ -189,7 +189,7 @@
   <script>
     const dataPerMinggu = {
       week1: {
-        aktivitas: 59, peserta: "527 km", waktu: "54h 8m 29s",
+        aktivitas: 59, peserta: "21 orang", waktu: "54h 8m 29s",
         leaderboard: [
           ["Bu Nana", "9", "6h 20m"],
           ["Hanin", "6", "5h 45m"],
@@ -226,7 +226,7 @@
       if (!data) return;
 
       document.getElementById("total-aktivitas").textContent = data.aktivitas;
-      
+      document.getElementById("total-peserta").textContent = data.peserta;
       document.getElementById("total-waktu").textContent = data.waktu;
 
       const leaderboardBody = document.querySelector("#leaderboard tbody");
