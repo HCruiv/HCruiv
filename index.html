@@ -70,11 +70,14 @@
       width: 100%;
       border-collapse: collapse;
       margin-bottom: 2rem;
+      border: 1px solid #ccc;
+      table-layout: fixed;
     }
     th, td {
       padding: 0.75rem;
       text-align: left;
-      border-bottom: 1px solid #ccc;
+      border: 1px solid #ccc;
+      word-break: break-word;
     }
     th {
       background: #fc5200;
@@ -97,6 +100,13 @@
     .icon-invalid {
       color: red;
       font-weight: bold;
+    }
+    .notes {
+      font-size: 0.95rem;
+      background: #fff9f0;
+      border-left: 4px solid #fc5200;
+      padding: 0.5rem 1rem;
+      margin-bottom: 2rem;
     }
 
     /* Responsive */
@@ -125,18 +135,7 @@
     <select id="week-select">
       <option value="week1">Minggu 1 (28 Apr - 4 Mei)</option>
       <option value="week2">Minggu 2 (5 - 11 Mei)</option>
-      <option value="week3">Minggu 3 (12 - 18 Mei)</option>
-      <option value="week4">Minggu 4 (19 - 25 Mei)</option>
-      <option value="week5">Minggu 5 (26 Mei - 1 Juni)</option>
-      <option value="week6">Minggu 6 (2 - 8 Juni)</option>
-      <option value="week7">Minggu 7 (9 - 15 Juni)</option>
-      <option value="week8">Minggu 8 (16 - 22 Juni)</option>
-      <option value="week9">Minggu 9 (23 - 29 Juni)</option>
-      <option value="week10">Minggu 10 (30 Juni - 6 Juli)</option>
-      <option value="week11">Minggu 11 (7 - 13 Juli)</option>
-      <option value="week12">Minggu 12 (14 - 20 Juli)</option>
-      <option value="week13">Minggu 13 (21 - 27 Juli)</option>
-      <option value="weekFinal">Minggu 13 (28 Juli)</option>
+      <!-- Tambahkan minggu berikutnya jika perlu -->
     </select>
 
     <div class="cards">
@@ -159,14 +158,19 @@
       <table id="leaderboard">
         <thead>
           <tr>
-            <th>Rank</th>
-            <th>Nama</th>
-            <th>Jumlah Aktivitas</th>
-            <th>Waktu</th>
+            <th style="width: 10%;">Rank</th>
+            <th style="width: 45%;">Nama</th>
+            <th style="width: 25%;">Jumlah Aktivitas</th>
+            <th style="width: 20%;">Waktu</th>
           </tr>
         </thead>
         <tbody></tbody>
       </table>
+    </div>
+    <div class="notes">
+      <strong>Peraturan:</strong><br/>
+      1) Minimal olahraga 30 menit per hari<br/>
+      2) Olahraga minimal 3 hari dalam 1 minggu
     </div>
 
     <div class="section-title">📅 Report Activity</div>
@@ -174,11 +178,11 @@
       <table id="report-olahraga">
         <thead>
           <tr>
-            <th>Tanggal</th>
-            <th>Nama</th>
-            <th>Aktivitas</th>
-            <th>Waktu</th>
-            <th>Valid</th>
+            <th style="width: 20%;">Tanggal</th>
+            <th style="width: 30%;">Nama</th>
+            <th style="width: 30%;">Aktivitas</th>
+            <th style="width: 15%;">Waktu</th>
+            <th style="width: 5%;">Valid</th>
           </tr>
         </thead>
         <tbody></tbody>
@@ -191,7 +195,7 @@
       week1: {
         aktivitas: "59 kegiatan", peserta: "21 orang", waktu: "54j 8m 29d",
         leaderboard: [
-          ["Bu Nana", "9", "6j 20m"],
+          ["Diana Suciati", "9", "6j 20m"],
           ["Hanin", "6", "5j 45m"],
           ["Ica", "5", "4j 50m"],
           ["Lia", "6", "5j 45m"],
@@ -237,24 +241,21 @@
           <td>${item[0]}</td>
           <td>${item[1]}</td>
           <td>${item[2]}</td>
-          
         </tr>`;
         leaderboardBody.insertAdjacentHTML("beforeend", row);
       });
 
       const reportBody = document.querySelector("#report-olahraga tbody");
       reportBody.innerHTML = "";
-      data.report.forEach((item, index) => {
+      data.report.forEach((item) => {
         const icon = item[4]
           ? '<span class="icon-valid">✅</span>'
           : '<span class="icon-invalid">❌</span>';
         const row = `<tr>
-          
           <td>${item[0]}</td>
           <td>${item[1]}</td>
           <td>${item[2]}</td>
           <td>${item[3]}</td>
-          
           <td>${icon}</td>
         </tr>`;
         reportBody.insertAdjacentHTML("beforeend", row);
