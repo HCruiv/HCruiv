@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Podium</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(to bottom, #fbe8d3, #fff6f0);
+      color: #333;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 2rem;
+      margin: 0;
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      margin-bottom: 1.5rem;
+      color: #fc5200;
+      text-shadow: 1px 1px 2px #fff;
+    }
+
+    .week-selector {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 0.5rem;
+      margin-bottom: 2rem;
+    }
+
+    .week-btn {
+      background: white;
+      border: 2px solid #fc5200;
+      color: #fc5200;
+      padding: 0.5rem 1rem;
+      border-radius: 20px;
+      cursor: pointer;
+      font-weight: 600;
+      transition: all 0.2s ease;
+    }
+
+    .week-btn:hover {
+      background: #fc5200;
+      color: white;
+    }
+
+    .week-btn.active {
+      background: #fc5200;
+      color: white;
+    }
+
+    .podium {
+      display: flex;
+      align-items: flex-end;
+      gap: 2rem;
+      margin-bottom: 2rem;
+    }
+
+    .step {
+      width: 120px;
+      border-radius: 15px 15px 0 0;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+      transition: transform 0.3s;
+    }
+
+    .step:hover {
+      transform: translateY(-5px);
+    }
+
+    .rank-1 {
+      height: 220px;
+      background: gold;
+    }
+
+    .rank-2 {
+      height: 170px;
+      background: silver;
+    }
+
+    .rank-3 {
+      height: 140px;
+      background: #cd7f32;
+    }
+
+    .step h2 {
+      margin: 0;
+      font-size: 1.2rem;
+      padding: 0.4rem;
+    }
+
+    .step .rank {
+      font-size: 2rem;
+      font-weight: bold;
+      padding-bottom: 0.5rem;
+    }
+
+    .list-container {
+      width: 100%;
+      max-width: 500px;
+      margin-top: 1rem;
+      background: white;
+      border-radius: 10px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+      padding: 1rem;
+    }
+
+    .list-container h3 {
+      text-align: center;
+      margin-bottom: 1rem;
+      color: #fc5200;
+    }
+
+    .rank-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .rank-list li {
+      display: flex;
+      justify-content: space-between;
+      padding: 0.5rem 1rem;
+      border-bottom: 1px solid #eee;
+      font-weight: 500;
+    }
+
+    .rank-list li span:first-child {
+      font-weight: bold;
+      color: #fc5200;
+    }
+
+    .rank-list li:last-child {
+      border-bottom: none;
+    }
+
+    .back {
+      margin-top: 2rem;
+      background: #fc5200;
+      color: white;
+      padding: 0.6rem 1.2rem;
+      text-decoration: none;
+      border-radius: 8px;
+      font-weight: bold;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+      transition: background 0.3s;
+    }
+
+    .back:hover {
+      background: #ff6f1a;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>🏆 Podium Mingguan</h1>
+
+  <div class="week-selector">
+    <button class="week-btn active">Week 1</button>
+    <button class="week-btn">Week 2</button>
+    <button class="week-btn">Week 3</button>
+    <button class="week-btn">Week 4</button>
+    <button class="week-btn">Week 5</button>
+    <button class="week-btn">Week 6</button>
+    <button class="week-btn">Week 7</button>
+    <button class="week-btn">Week 8</button>
+    <button class="week-btn">Week 9</button>
+    <button class="week-btn">Week 10</button>
+    <button class="week-btn">Week 11</button>
+    <button class="week-btn">Week 12</button>
+    <button class="week-btn">Week 13</button>
+    <button class="week-btn">Final Podium</button>
+  </div>
+
+  <div class="podium">
+    <div class="step rank-2">
+      <h2>🥈 Hanin</h2>
+      <div class="rank">2</div>
+    </div>
+    <div class="step rank-1">
+      <h2>🥇 Bu Nana</h2>
+      <div class="rank">1</div>
+    </div>
+    <div class="step rank-3">
+      <h2>🥉 Ica</h2>
+      <div class="rank">3</div>
+    </div>
+  </div>
+
+  <div class="list-container">
+    <h3>🏅 Peringkat 4–10</h3>
+    <ul class="rank-list">
+      <li><span>4.</span> Rudi</li>
+      <li><span>5.</span> Dina</li>
+      <li><span>6.</span> Tono</li>
+      <li><span>7.</span> Bayu</li>
+      <li><span>8.</span> Lilis</li>
+      <li><span>9.</span> Wati</li>
+      <li><span>10.</span> Yoga</li>
+    </ul>
+  </div>
+
+  <a href="index.html" class="back">← Kembali ke Dashboard</a>
+
+  <script>
+    // Fungsi highlight tombol week yang aktif
+    const weekButtons = document.querySelectorAll('.week-btn');
+    weekButtons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        weekButtons.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        // Di sini kamu bisa load data dinamis sesuai week
+        alert('Tampilan data untuk: ' + btn.textContent);
+      });
+    });
+  </script>
+
+</body>
+</html>
