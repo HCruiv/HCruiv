@@ -81,7 +81,7 @@
 
   <header>
     <h1>Dashboard HC U Fit</h1>
-    <div id="date">4 Mei 2025</div>
+    <div id="date">5 Mei 2025</div>
   </header>
 
   <div class="container">
@@ -119,6 +119,7 @@
         <h3>Total Elevasi</h3>
         <p id="total-elevasi"></p>
       </div>
+      
     </div>
 
     <div class="section-title">🏆 Leaderboard Mingguan</div>
@@ -185,6 +186,7 @@
       document.getElementById("total-jarak").textContent = data.jarak;
       document.getElementById("total-waktu").textContent = data.waktu;
       document.getElementById("total-elevasi").textContent = data.elevasi;
+      
 
       const leaderboardBody = document.querySelector("#leaderboard tbody");
       leaderboardBody.innerHTML = "";
