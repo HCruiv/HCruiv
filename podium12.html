@@ -3,32 +3,35 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Podium</title>
+  <title>Podium Mingguan</title>
   <style>
+    * {
+      box-sizing: border-box;
+    }
+
     body {
-      font-family: 'Segoe UI', sans-serif;
-      background: linear-gradient(to bottom, #fbe8d3, #fff6f0);
-      color: #333;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      padding: 2rem;
       margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(to bottom right, #fff3e0, #fffaf2);
+      color: #333;
+      padding: 2rem;
     }
 
     h1 {
-      font-size: 2.5rem;
-      margin-bottom: 1.5rem;
+      text-align: center;
+      font-size: 3rem;
       color: #fc5200;
-      text-shadow: 1px 1px 2px #fff;
+      text-shadow: 2px 2px 5px rgba(0,0,0,0.1);
+      margin-bottom: 2rem;
     }
 
+    /* Week selector desktop */
     .week-selector {
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
       gap: 0.5rem;
-      margin-bottom: 2rem;
+      margin-bottom: 2.5rem;
     }
 
     .week-btn {
@@ -40,82 +43,96 @@
       cursor: pointer;
       font-weight: 600;
       transition: all 0.2s ease;
+      text-decoration: none;
     }
 
-    .week-btn:hover {
-      background: #fc5200;
-      color: white;
-    }
-
+    .week-btn:hover,
     .week-btn.active {
       background: #fc5200;
       color: white;
     }
 
+    /* Week dropdown (mobile) */
+    .week-dropdown {
+      display: none;
+      justify-content: center;
+      margin-bottom: 2rem;
+    }
+
+    .week-dropdown select {
+      padding: 0.5rem 1rem;
+      border: 2px solid #fc5200;
+      border-radius: 10px;
+      font-size: 1rem;
+      color: #fc5200;
+      font-weight: bold;
+    }
+
     .podium {
       display: flex;
-      align-items: flex-end;
-      gap: 2rem;
-      margin-bottom: 2rem;
       justify-content: center;
+      align-items: flex-end;
+      gap: 1.5rem;
+      margin-bottom: 2rem;
+      flex-wrap: nowrap;
     }
 
     .step {
-      width: 120px;
-      border-radius: 15px 15px 0 0;
+      width: 160px;
+      border-radius: 20px 20px 0 0;
       text-align: center;
       display: flex;
       flex-direction: column;
       justify-content: flex-end;
-      box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+      box-shadow: 0 6px 20px rgba(0,0,0,0.15);
       transition: transform 0.3s;
     }
 
     .step:hover {
-      transform: translateY(-5px);
+      transform: scale(1.05);
     }
 
     .rank-1 {
-      height: 220px;
-      background: gold;
+      height: 260px;
+      background: linear-gradient(145deg, #ffeb3b, #fff176);
     }
 
     .rank-2 {
-      height: 170px;
-      background: silver;
+      height: 220px;
+      background: linear-gradient(145deg, #cfd8dc, #e0e0e0);
     }
 
     .rank-3 {
-      height: 140px;
-      background: #cd7f32;
+      height: 190px;
+      background: linear-gradient(145deg, #cd7f32, #d8a06b);
     }
 
     .step h2 {
       margin: 0;
-      font-size: 1.2rem;
-      padding: 0.4rem;
+      font-size: 1.3rem;
+      padding: 0.5rem;
+      color: #333;
     }
 
     .step .rank {
       font-size: 2rem;
       font-weight: bold;
-      padding-bottom: 0.5rem;
+      padding-bottom: 0.6rem;
     }
 
     .list-container {
-      width: 100%;
-      max-width: 500px;
-      margin-top: 1rem;
+      max-width: 800px;
+      margin: 2rem auto;
       background: white;
-      border-radius: 10px;
-      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-      padding: 1rem;
+      border-radius: 12px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+      padding: 1.5rem;
     }
 
     .list-container h3 {
       text-align: center;
-      margin-bottom: 1rem;
       color: #fc5200;
+      margin-bottom: 1rem;
     }
 
     .rank-list {
@@ -127,9 +144,9 @@
     .rank-list li {
       display: flex;
       justify-content: space-between;
-      padding: 0.5rem 1rem;
+      padding: 0.75rem 1rem;
       border-bottom: 1px solid #eee;
-      font-weight: 500;
+      font-size: 1.05rem;
     }
 
     .rank-list li span:first-child {
@@ -142,14 +159,16 @@
     }
 
     .back {
-      margin-top: 2rem;
+      display: block;
+      width: fit-content;
+      margin: 2rem auto 0;
       background: #fc5200;
       color: white;
-      padding: 0.6rem 1.2rem;
+      padding: 0.75rem 1.5rem;
+      border-radius: 10px;
       text-decoration: none;
-      border-radius: 8px;
       font-weight: bold;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
       transition: background 0.3s;
     }
 
@@ -157,23 +176,32 @@
       background: #ff6f1a;
     }
 
+    /* Responsive */
     @media (max-width: 768px) {
-      .week-btn {
-        font-size: 0.9rem;
-        padding: 0.4rem 0.8rem;
+      .week-selector {
+        display: none;
+      }
+
+      .week-dropdown {
+        display: flex;
       }
 
       .podium {
-        flex-direction: column;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        gap: 0.5rem;
+        overflow-x: auto;
+        justify-content: space-between;
       }
 
       .step {
-        width: 100%;
-        margin-bottom: 1rem;
+        width: 120px;
+        margin: 0;
+        flex-shrink: 0;
       }
 
       .list-container {
-        max-width: 100%;
+        padding: 1rem;
       }
     }
   </style>
@@ -182,45 +210,68 @@
 
   <h1>🏆 Podium Mingguan</h1>
 
+  <!-- Desktop Button -->
   <div class="week-selector">
-    <button class="week-btn"><a href="podium1.html">Week 1</a></button>
-    <button class="week-btn active"><a href="podium2.html">Week 2</a></button>
-    <button class="week-btn"><a href="podium3.html">Week 3</a></button>
-    <button class="week-btn"><a href="podium4.html">Week 4</a></button>
-    <button class="week-btn"><a href="podium5.html">Week 5</a></button>
-    <button class="week-btn"><a href="podium6.html">Week 6</a></button>
-    <button class="week-btn"><a href="podium7.html">Week 7</a></button>
-    <button class="week-btn"><a href="podium8.html">Week 8</a></button>
-    <button class="week-btn"><a href="podium9.html">Week 9</a></button>
-    <button class="week-btn"><a href="podium10.html">Week 10</a></button>
-    <button class="week-btn"><a href="podium11.html">Week 11</a></button>
-    <button class="week-btn"><a href="podium12.html">Week 12</a></button>
-    <button class="week-btn"><a href="podium13.html">Week 13</a></button>
-    <button class="week-btn"><a href="podiumFinal.html">Final Podium</a></button>
+    <a href="podium1.html" class="week-btn">Week 1</a>
+    <a href="podium2.html" class="week-btn">Week 2</a>
+    <a href="podium3.html" class="week-btn">Week 3</a>
+    <a href="podium4.html" class="week-btn">Week 4</a>
+    <a href="podium5.html" class="week-btn">Week 5</a>
+    <a href="podium6.html" class="week-btn">Week 6</a>
+    <a href="podium7.html" class="week-btn">Week 7</a>
+    <a href="podium8.html" class="week-btn">Week 8</a>
+    <a href="podium9.html" class="week-btn">Week 9</a>
+    <a href="podium10.html" class="week-btn">Week 10</a>
+    <a href="podium11.html" class="week-btn">Week 11</a>
+    <a href="podium12.html" class="week-btn active">Week 12</a>
+    <a href="podium13.html" class="week-btn">Week 13</a>
+    <a href="podiumFinal.html" class="week-btn">Final Podium</a>
   </div>
 
+  <!-- Mobile Dropdown -->
+  <div class="week-dropdown">
+    <select onchange="location = this.value;">
+      <option value="podium1.html">Week 1</option>
+      <option value="podium2.html">Week 2</option>
+      <option value="podium3.html">Week 3</option>
+      <option value="podium4.html">Week 4</option>
+      <option value="podium5.html">Week 5</option>
+      <option value="podium6.html">Week 6</option>
+      <option value="podium7.html">Week 7</option>
+      <option value="podium8.html">Week 8</option>
+      <option value="podium9.html">Week 9</option>
+      <option value="podium10.html">Week 10</option>
+      <option value="podium11.html">Week 11</option>
+      <option value="podium12.html" selected>Week 12</option>
+      <option value="podium13.html">Week 13</option>
+      <option value="podiumFinal.html">Final Podium</option>
+    </select>
+  </div>
+
+  <!-- Podium 1-3 -->
   <div class="podium">
     <div class="step rank-2">
-      <h2>🥈 Aden</h2>
+      <h2>🥈 Hanin</h2>
       <div class="rank">2</div>
     </div>
     <div class="step rank-1">
-      <h2>🥇 lia</h2>
+      <h2>🥇 Bu Nana</h2>
       <div class="rank">1</div>
     </div>
     <div class="step rank-3">
-      <h2>🥉 Redy</h2>
+      <h2>🥉 Ica</h2>
       <div class="rank">3</div>
     </div>
   </div>
 
+  <!-- Rank 4–10 -->
   <div class="list-container">
     <h3>🏅 Peringkat 4–10</h3>
     <ul class="rank-list">
-      <li><span>4.</span> Sulis</li>
-      <li><span>5.</span> Ica</li>
-      <li><span>6.</span> Mela</li>
-      <li><span>7.</span> Hanin</li>
+      <li><span>4.</span> Rudi</li>
+      <li><span>5.</span> Dina</li>
+      <li><span>6.</span> Tono</li>
+      <li><span>7.</span> Bayu</li>
       <li><span>8.</span> Lilis</li>
       <li><span>9.</span> Wati</li>
       <li><span>10.</span> Yoga</li>

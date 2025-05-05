@@ -72,9 +72,9 @@
       display: flex;
       justify-content: center;
       align-items: flex-end;
-      gap: 2rem;
+      gap: 1.5rem;
       margin-bottom: 2rem;
-      flex-wrap: wrap;
+      flex-wrap: nowrap;
     }
 
     .step {
@@ -176,6 +176,7 @@
       background: #ff6f1a;
     }
 
+    /* Responsive */
     @media (max-width: 768px) {
       .week-selector {
         display: none;
@@ -186,13 +187,17 @@
       }
 
       .podium {
-        flex-direction: column;
-        align-items: center;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        gap: 0.5rem;
+        overflow-x: auto;
+        justify-content: space-between;
       }
 
       .step {
-        width: 80%;
-        margin-bottom: 1rem;
+        width: 120px;
+        margin: 0;
+        flex-shrink: 0;
       }
 
       .list-container {
